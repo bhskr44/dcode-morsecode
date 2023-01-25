@@ -39,3 +39,7 @@ def decode_message(morse_code)
     end
     return decoded_message
 end
+
+
+ print(decode_message("  .-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ..."))
+#  => A BOX FULL OF RUBIES => nil
