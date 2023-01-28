@@ -15,9 +15,9 @@ MORSE_CODE_DICT = { 'A' => '.-', 'B' => '-...',
                     '(' => '-.--.', ')' => '-.--.-'} 
 
 def decode_char(morse_code)
-    MORSE_CODE_DICT.each do |char, code|
+    MORSE_CODE_DICT.each do |character, code|
         if code == morse_code
-            return char.upcase
+            return character.upcase
         end
     end
 end
