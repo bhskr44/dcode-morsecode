@@ -1,46 +1,38 @@
-CONST MORSE_CODE_DICT = { 'A' => '.-', 'B' => '-...',
-                    'C' => '-.-.', 'D' => '-..', 'E' => '.',
-                    'F' => '..-.', 'G' => '--.', 'H' => '....',
-                    'I' => '..', 'J' => '.---', 'K' => '-.-',
-                    'L' => '.-..', 'M' => '--', 'N' => '-.',
-                    'O' => '---', 'P' => '.--.', 'Q' => '--.-',
-                    'R' => '.-.', 'S' => '...', 'T' => '-',
-                    'U' => '..-', 'V' => '...-', 'W' => '.--',
-                    'X' => '-..-', 'Y' => '-.--', 'Z' => '--..',
-                    '1' => '.----', '2' => '..---', '3' => '...--',
-                    '4' => '....-', '5' => '.....', '6' => '-....',
-                    '7' => '--...', '8' => '---..', '9' => '----.',
-                    '0' => '-----', ', ' => '--..--', '.' => '.-.-.-',
-                    '?' => '..--..', '/' => '-..-.', '-' => '-....-',
-                    '(' => '-.--.', ')' => '-.--.-' }.freeze
-
-def decode_char(morse_code)
-  MORSE_CODE_DICT.each do |character, code|
-    if code == morse_code
-      return character.upcase
+def decode_char(character)
+    morse_code = {
+  
+      'A' => '.-', 'B' => '-...', 'C' => '-.-.', 'D' => '-..',
+  
+      'E' => '.', 'F' => '..-.', 'G' => '--.', 'H' => '....',
+  
+      'I' => '..', 'J' => '.---', 'K' => '-.-', 'L' => '.-..',
+  
+      'M' => '--', 'N' => '-.', 'O' => '---', 'P' => '.--.',
+  
+      'Q' => '--.-', 'R' => '.-.', 'S' => '...', 'T' => '-',
+  
+      'U' => '..-', 'V' => '...-', 'W' => '.--', 'X' => '-..-',
+  
+      'Y' => '-.--', 'Z' => '--..'
+  
+    }
+    morse_code.each { |key, value| return key if value == character }
+  end
+  
+  def decode_word(word)
+    word_split = word.split
+    word_array = word_split.map { |morse_word| decode_char(morse_word) }
+    word_array.join
+  end
+  
+  def decode(sentence)
+    sentence_spiltted = sentence.split
+  
+    sentence_array = sentence_spiltted.map do |morse_sentence|
+      decode_word(morse_sentence)
     end
+    sentence_array.join
   end
-end
-
-def decode_word(morse_code)
-  words = morse_code.split(" ")
-  decoded_word = ""
-  words.each do |word|
-    decoded_word += decode_char(word)
-  end
-  return decoded_word
-end
-
-def decode_message(morse_code)
-  words = morse_code.split(" ")
-  decoded_message = ""
-  words.each do |word|
-    decoded_message += decode_word(word) + " "
-  end
-  return decoded_message
-end
-
-
-print(decode_message("  .-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ..."))
-#  => A BOX FULL OF RUBIES => nil
-# message Recieved:  .-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...
+  
+  puts decode('.- -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...')
+  
